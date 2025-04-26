@@ -19,7 +19,7 @@
   <!-- OTP Screen -->
   <div class="container" id="otp-screen" style="display:none;">
     <h2>Enter OTP</h2>
-    <p>We sent a code to your email (simulation).</p>
+    <p>We sent a code to your email.</p>
     <input type="text" id="otp-input" placeholder="Enter OTP" required>
     <button onclick="verifyOTP()">Verify OTP</button>
   </div>
@@ -47,6 +47,12 @@
     <ol id="leaderboard"></ol>
   </div>
 
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("cURfPoE7gEsiADIh5");
+    })();
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
