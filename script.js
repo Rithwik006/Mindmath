@@ -15,13 +15,24 @@ function sendOTP() {
     return;
   }
 
-  generatedOTP = Math.floor(1000 + Math.random() * 9000); // Random 4-digit OTP
-  console.log("Simulated OTP (for demo):", generatedOTP); // Show OTP in console
+  generatedOTP = Math.floor(1000 + Math.random() * 9000);
 
-  alert(`Simulated OTP is: ${generatedOTP}`); // (In real world, you'd send this via email)
+  const templateParams = {
+    to_name: userName,
+    to_email: email,
+    otp: generatedOTP
+  };
 
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('otp-screen').style.display = 'block';
+  emailjs.send('service_bjtsw7g', 'template_xgq4pfb', templateParams)
+    .then(function(response) {
+      console.log('SUCCESS!', response.status, response.text);
+      alert('OTP sent to your email!');
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('otp-screen').style.display = 'block';
+    }, function(error) {
+      console.log('FAILED...', error);
+      alert('Failed to send OTP. Please try again.');
+    });
 }
 
 function verifyOTP() {
@@ -140,3 +151,4 @@ function restartGame() {
   document.getElementById('end-screen').style.display = 'none';
   document.getElementById('start-screen').style.display = 'block';
 }
+  
